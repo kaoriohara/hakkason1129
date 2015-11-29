@@ -21,6 +21,23 @@ $(function() {
       ctx.drawImage(video, 0, 0);
       document.querySelector('img').src = canvas.toDataURL('image/webp');
     }
+
+    // detectFromCanvasData("c1", function(data) {
+    //   var tts = new SpeechText();
+    //   tts.onend = function() {
+    //     console.log("読み上げ終了");
+    //     snapshot();
+    //   };
+    //   if (data.candidates.length < 1) {
+    //     alert("該当データがありませんでした。");
+    //   } else {
+    //     var item = data.candidates[0].detail.itemName;
+    //     tts.speech(item);
+    //     $("#text").text(item);
+    //   }
+    // }, function(data){
+    //   alert("エラーが発生しました" + data);
+    // });
   }
 
   if (hasGetUserMedia()) {
