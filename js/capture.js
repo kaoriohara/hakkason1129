@@ -1,9 +1,11 @@
 $(function() {
-  var interval = 3000;
+  var interval = 1000;
   var video = document.querySelector('video');
   var canvas = document.querySelector('canvas');
   var ctx = canvas.getContext('2d');
   var localMediaStream = null;
+
+  var analyzing = false;
 
   //カメラ使えるかチェック
   var hasGetUserMedia = function() {
@@ -20,24 +22,27 @@ $(function() {
     if (localMediaStream) {
       ctx.drawImage(video, 0, 0);
       document.querySelector('img').src = canvas.toDataURL('image/webp');
-    }
 
-    // detectFromCanvasData("c1", function(data) {
-    //   var tts = new SpeechText();
-    //   tts.onend = function() {
-    //     console.log("読み上げ終了");
-    //     snapshot();
-    //   };
-    //   if (data.candidates.length < 1) {
-    //     alert("該当データがありませんでした。");
-    //   } else {
-    //     var item = data.candidates[0].detail.itemName;
-    //     tts.speech(item);
-    //     $("#text").text(item);
-    //   }
-    // }, function(data){
-    //   alert("エラーが発生しました" + data);
-    // });
+      analyzing = true;
+      detectFromCanvasData(canvas, function(data) {
+        if (data.candidates && data.candidates.length > 0) {
+          var tts = new SpeechText();
+          tts.onend = function() {
+            console.log("読み上げ終了");
+          };
+
+          var item = data.candidates[0].detail.itemName;
+          tts.speech(item);
+          $("#text").text(item);
+        } else {
+          console.log("該当データがありませんでした。");
+        }
+        analyzing = false;
+      }, function(data){
+        console.log("エラーが発生しました" + data);
+        analyzing = false;
+      });
+    }
   }
 
   if (hasGetUserMedia()) {
@@ -60,8 +65,10 @@ $(function() {
   var ihandle;
   var startCapture = function() {
     ihandle = setInterval(function(){
-      snapshot();
-      console.log("sanapshot!!");
+      if (!(analyzing || speechSynthesis.speaking)) {
+        snapshot();
+        console.log("sanapshot!!");
+      }
      }, interval);
   }
 
