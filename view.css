@@ -37,10 +37,11 @@ button {
   display: block;
 }
 #text {
-  padding: 50px 50px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 24px;
+    padding: 90px 20px 0px 160px;
+    /* text-align: center; */
+    font-weight: bold;
+    font-size: 24px;
+    width: 260px;
 }
 .img {
   margin-top: 20px;
