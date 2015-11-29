@@ -40,6 +40,7 @@ $(function() {
     }, onFailSoHard);
   }
 
+  var ihandle;
   var startCapture = function() {
     ihandle = setInterval(function(){
       snapshot();
@@ -50,7 +51,6 @@ $(function() {
   startWatch();
   startCapture();
 
-  var ihandle;
   //ボタンイベント
   /*
   $("#capture").click(function() {
