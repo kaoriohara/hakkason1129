@@ -29,6 +29,18 @@ body {
 .logo img {
 	text-align: center;
 }
+select {
+	-webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    text-indent:.01px; /* Firefox用 */
+    text-overflow:""; /* Firefox用 */
+	text-align: center;
+	margin: -30px auto 10px;
+	width: 60px;
+	display: block;
+	padding: 4px;
+}
 a {
 	color:#fff;
 	text-decoration: none;
