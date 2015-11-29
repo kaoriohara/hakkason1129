@@ -1,0 +1,19 @@
+img,canvas,video {
+  /*
+  width:500px;
+  height:500px;
+  */
+  background-color:black;
+}
+button {
+  border:1px solid #eeeeee;
+  width:100px;
+  height:30px;
+  color:white;
+}
+#capture {
+  background-color:#008800;
+}
+#stop {
+  background-color:#880000;
+}
