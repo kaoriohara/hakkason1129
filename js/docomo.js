@@ -1,5 +1,5 @@
 (function(global) {
-  var sendCanvasDataToDocomoAPI = function(canvasId, onSuccess, onError) {
+  var detectFromCanvasData = function(canvasId, onSuccess, onError) {
     var canvas = document.getElementById(canvasId);
 
     var base64 = canvas.toDataURL('image/png'),
