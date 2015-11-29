@@ -53,6 +53,6 @@
     });
   };
 
-  global.sendCanvasDataToDocomoAPI = sendCanvasDataToDocomoAPI;
+  global.detectFromCanvasData = detectFromCanvasData;
   global.hiraganize = hiraganize;
 })(this);
