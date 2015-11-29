@@ -6,19 +6,20 @@
 	<title></title>
 	<link rel="stylesheet" href="main.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script type="text/javascript" src="js/capture.js"></script>
-	<script type="text/javascript" src="js/docomo.js"></script>
-	<script type="text/javascript" src="js/tts.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
 	<div id="wapper">
-	<div class="lang">日本語</div>
+		<select id="selectLang"  class="form-control">
+			<option value="ja-JP">日本語</option>
+			<option value="en-US">English</option>
+		</select>
+		
 		<div class="logo">
 			<img src="img/logo.png">
 		</div>
 		<div class="btn_wrap">
-			<div class="btn"><a href="view.html">Start!</a></div>
+			<div class="btn"><a id="nextPage" href="#">Start!</a></div>
 		</div>
 	</div>
 </body>
