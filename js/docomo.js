@@ -1,7 +1,5 @@
 (function(global) {
-  var detectFromCanvasData = function(canvasId, onSuccess, onError) {
-    var canvas = document.getElementById(canvasId);
-
+  var detectFromCanvasData = function(canvas, onSuccess, onError) {
     var base64 = canvas.toDataURL('image/png'),
         bin = atob(base64.replace(/^.*,/, '')),
         buffer = new Uint8Array(bin.length);
@@ -11,7 +9,7 @@
 
     $.ajax({
       type: "POST",
-      url: "https://api.apigw.smt.docomo.ne.jp/imageRecognition/v1/recognize?APIKEY=67662f6d7273434b39324c71446f6b42794943383458416e417a6d766f474432324975352e38516c594a38&recog=product-all",
+      url: "https://api.apigw.smt.docomo.ne.jp/imageRecognition/v1/recognize?APIKEY=67662f6d7273434b39324c71446f6b42794943383458416e417a6d766f474432324975352e38516c594a38&recog=product-all&numOfCandidates=1",
       data: buffer,
       contentType: false,
       processData: false,
