@@ -1,4 +1,5 @@
 $(function() {
+  var interval = 3000;
   var video = document.querySelector('video');
   var canvas = document.querySelector('canvas');
   var ctx = canvas.getContext('2d');
@@ -28,22 +29,42 @@ $(function() {
     alert("未対応ブラウザです。");
   }
 
+  var startWatch = function() {
+    window.URL = window.URL || window.webkitURL;
+    navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+                  navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
-  window.URL = window.URL || window.webkitURL;
-  navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia ||
-                navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    navigator.getUserMedia({video: true}, function(stream) {
+      video.src = window.URL.createObjectURL(stream);
+      localMediaStream = stream;
+    }, onFailSoHard);
+  }
 
-  navigator.getUserMedia({video: true}, function(stream) {
-    video.src = window.URL.createObjectURL(stream);
-    localMediaStream = stream;
-  }, onFailSoHard);
+  var startCapture = function() {
+    ihandle = setInterval(function(){
+      snapshot();
+      console.log("sanapshot!!");
+     }, interval);
+  }
 
+  startWatch();
+  startCapture();
+
+  var ihandle;
   //ボタンイベント
+  /*
   $("#capture").click(function() {
     snapshot();
   });
+  */
   $("#stop").click(function() {
     localMediaStream.stop();
+    localMediaStream = null;
+    clearInterval(ihandle);
+  });
+  $("#start").click(function() {
+    startWatch();
+    startCapture();
   });
   $("video").click(function() {
     snapshot();
