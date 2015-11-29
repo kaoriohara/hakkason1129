@@ -6,6 +6,11 @@ $(function() {
   var localMediaStream = null;
 
   var analyzing = false;
+  var lang = "ja-JP";
+  if(typeof window.sessionStorage !== undefined) {
+    lang = window.sessionStorage.getItem("lang");
+  }
+  
 
   //カメラ使えるかチェック
   var hasGetUserMedia = function() {
@@ -32,7 +37,7 @@ $(function() {
           };
 
           var item = data.candidates[0].detail.itemName;
-          tts.speech(item);
+          tts.speech(item, lang);
           $("#text").text(item);
         } else {
           console.log("該当データがありませんでした。");
